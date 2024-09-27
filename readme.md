@@ -1,4 +1,4 @@
-----
+
 ## MSA (BFF Architecture)
 - 2024.09.30 까지 완성 예정
 
@@ -6,7 +6,6 @@
 
 - Java 17
 - Gradle 8.10.2
-  - `./gradlew wrapper --gradle-version=8.10.2`
 - Spring Boot 3.2.1
     - spring dependency management 1.1.4
     - spring-validation
@@ -21,7 +20,12 @@
 - MariaDB
 - Application Spring Boot/JDK 17
 
-----
+## MSA BFF 구조
+  ![img.png](img/img.png)
+
+
+
+
 
 
 
