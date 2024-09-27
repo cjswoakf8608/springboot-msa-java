@@ -1,0 +1,16 @@
+dependencies {
+    implementation project(':globals')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootJar {
+    enabled = true
+//    mainClass = 'com.demo.project.coreusers.CoreUsersApplication'
+    archiveFileName = 'application.jar'
+}
+
+jar {
+    enabled = true
+}

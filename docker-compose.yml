@@ -1,0 +1,103 @@
+version: "3.0"
+services:
+  mongo_db:
+    container_name: mongo_db
+    image: mongo:5.0.2
+    restart: no
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=dev00
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - api_network
+
+  maria_db:
+    container_name: maria_db
+    image: mariadb
+    volumes:
+      - ~/docker/mariadb/etc/mysql/conf.d:/etc/mysql/conf.d:ro
+      - ~/docker/mariadb/var/lib/mysql:/var/lib/mysql
+      - ~/docker/mariadb/var/log/maria:/var/log/maria
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=dev00
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports:
+      - 3307:3306
+    networks:
+      - core_network
+
+  application_app_api:
+    build:
+      context: ./apis/apps
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - mongo_db
+    ports:
+      - 8000:8000
+    container_name: app_api
+    networks:
+      - api_network
+
+  application_auth_api:
+    build:
+      context: ./apis/auths
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - mongo_db
+    ports:
+      - 8001:8001
+    container_name: auth_api
+    networks:
+      - api_network
+
+  application_payment_api:
+    build:
+      context: ./apis/payments
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - mongo_db
+    ports:
+      - 8002:8002
+    container_name: payment_api
+    networks:
+      - api_network
+
+  application_user_core:
+    build:
+      context: ./cores/core-users
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - maria_db
+    ports:
+      - 3001:3001
+    container_name: user_core
+    networks:
+      - core_network
+
+  application_product_core:
+    build:
+      context: ./cores/core-products
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - maria_db
+    ports:
+      - 3002:3002
+    container_name: product_core
+    networks:
+      - core_network
+
+volumes:
+  mongo_data:
+
+networks:
+  api_network:
+  core_network:

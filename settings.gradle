@@ -1,0 +1,14 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'spring'
+
+include 'apis:auths'
+include 'apis:apps'
+include 'apis:payments'
+include 'cores:core-users'
+include 'cores:core-products'
+include 'globals'
