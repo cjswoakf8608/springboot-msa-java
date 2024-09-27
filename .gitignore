@@ -1,0 +1,5 @@
+/apis/**/build/**
+/cores/**/build/**
+/globals/**/build/**
+
+.gradle/
