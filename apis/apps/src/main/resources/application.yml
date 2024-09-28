@@ -1,2 +1,35 @@
 server:
   port: 8000
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      authentication-database: admin
+      username: root
+      password: dev00
+
+externals:
+  # apis - 각 MSA API 정의
+  apis:
+    api-network: # apis 속한 MSA API 정의
+      auths:
+        host: http://localhost:8001
+        version: /v1
+        apis:
+          token:
+            resource: /tokens # JWT 토큰
+    core-network: # cores 속한 MSA API 정의
+      users:
+        host: http://localhost:3001
+        version: /v1
+        apis:
+          members:
+            resource: /members # 회원 정보
+      products:
+        host: http://localhost:3002
+        version: /v1
+        apis:
+          points:
+            resource: /points # 포인트 정보
+
+
