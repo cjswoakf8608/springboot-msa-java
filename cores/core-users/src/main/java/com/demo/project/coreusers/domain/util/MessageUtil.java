@@ -1,4 +1,4 @@
-package com.demo.project.globals.domain.util;
+package com.demo.project.coreusers.domain.util;
 
 import com.demo.project.globals.domain.constant.ResponseConstant;
 import org.springframework.beans.factory.annotation.Autowired;

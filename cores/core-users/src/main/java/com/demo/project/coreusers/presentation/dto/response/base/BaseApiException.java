@@ -1,7 +1,7 @@
-package com.demo.project.globals.response;
+package com.demo.project.coreusers.presentation.dto.response.base;
 
+import com.demo.project.coreusers.domain.util.MessageUtil;
 import com.demo.project.globals.domain.constant.ResponseConstant;
-import com.demo.project.globals.domain.util.MessageUtil;
 import com.demo.project.globals.domain.util.DateTimeUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

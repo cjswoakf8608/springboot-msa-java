@@ -1,4 +1,4 @@
-package com.demo.project.globals.response;
+package com.demo.project.coreusers.presentation.dto.response.base;
 
 import com.demo.project.globals.domain.enumeration.ResponseApiStatus;
 import com.demo.project.globals.domain.util.DateTimeUtil;
@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-
-import java.util.Date;
 
 @Getter
 @Builder

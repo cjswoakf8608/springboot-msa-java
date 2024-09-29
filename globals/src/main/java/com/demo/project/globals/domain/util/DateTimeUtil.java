@@ -1,6 +1,7 @@
 package com.demo.project.globals.domain.util;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class DateTimeUtil {
@@ -12,6 +13,10 @@ public class DateTimeUtil {
 	}
 	public static String now(){
 		return date2String(new Date(), DEFAULT_DATETIME_FORMAT);
+	}
+
+	public static String date2String(LocalDateTime date){
+		return date.format(java.time.format.DateTimeFormatter.ofPattern(DEFAULT_DATETIME_FORMAT));
 	}
 
 }
