@@ -3,7 +3,6 @@ package com.demo.project.coreusers.infrastructure.persistence.database.impl;
 import com.demo.project.coreusers.domain.entity.MemberRoleEntity;
 import com.demo.project.coreusers.domain.entity.QMemberRoleEntity;
 import com.demo.project.coreusers.domain.model.Search;
-import com.demo.project.coreusers.infrastructure.persistence.database.MemberRoleJpaRepository;
 import com.demo.project.coreusers.infrastructure.persistence.database.MemberRoleRepository;
 import com.demo.project.coreusers.infrastructure.persistence.database.builder.QueryBuilderFactory;
 import com.demo.project.coreusers.infrastructure.persistence.database.common.QuerydslRepository;
@@ -21,8 +20,8 @@ import java.util.Objects;
 @Service
 public class MemberRoleRepositoryImpl extends QuerydslRepository implements MemberRoleRepository {
 
-	public MemberRoleRepositoryImpl(Class<?> domainClass) {
-		super(domainClass);
+	public MemberRoleRepositoryImpl() {
+		super(MemberRoleEntity.class);
 	}
 
 	/**
