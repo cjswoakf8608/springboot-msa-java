@@ -1,10 +1,12 @@
 server:
   port: 8000
-  data:
+
+spring:
+  datasource:
     mongodb:
       host: localhost
       port: 27017
-      authentication-database: admin
+      database: admin
       username: root
       password: dev00
 

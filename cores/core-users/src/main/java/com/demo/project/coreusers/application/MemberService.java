@@ -17,7 +17,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class MemberService implements MemberUserCase {
+public class MemberService implements MemberUseCase {
 	private final MemberPersistenceService memberPersistenceService;
 
 	@Override

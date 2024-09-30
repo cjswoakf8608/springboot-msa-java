@@ -1,5 +1,6 @@
 package com.demo.project.coreusers.domain.entity;
 
+import com.demo.project.coreusers.domain.constant.MemberRdbConstant;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +43,7 @@ public class MemberPointEntity {
 
     @Column(nullable = false, length = 1)
     @Builder.Default
-    private String status = "A";
+    private String status = MemberRdbConstant.STATUS_ACTIVE;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

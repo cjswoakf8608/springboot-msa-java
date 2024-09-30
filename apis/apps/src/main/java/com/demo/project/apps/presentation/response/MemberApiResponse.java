@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 @Schema(description = "단일 사용자 응답")
 public class MemberApiResponse {
+    private Long id;
     private String name;
     private Long totalView;
     private List<String> memberRoles;
@@ -21,6 +22,7 @@ public class MemberApiResponse {
 
     public static MemberApiResponse response(MemberResponse response) {
         return MemberApiResponse.builder()
+                .id(response.getId())
                 .name(response.getName())
                 .totalView(response.getTotalView())
                 .memberRoles(response.getMemberRoles())

@@ -1,6 +1,13 @@
 server:
   port: 3002
 
+# swagger
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
 
 # database
 spring:

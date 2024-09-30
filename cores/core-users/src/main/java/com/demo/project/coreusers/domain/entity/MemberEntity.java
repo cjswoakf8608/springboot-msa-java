@@ -1,5 +1,6 @@
 package com.demo.project.coreusers.domain.entity;
 
+import com.demo.project.coreusers.domain.constant.MemberRdbConstant;
 import com.demo.project.globals.domain.constant.BaseRdbConstant;
 import com.demo.project.globals.domain.util.DateTimeUtil;
 import jakarta.persistence.*;
@@ -44,7 +45,7 @@ public class MemberEntity {
 
     @Column(nullable = false, length = 1)
     @Builder.Default
-    private String status = BaseRdbConstant.STATUS_ACTIVE;
+    private String status = MemberRdbConstant.STATUS_ACTIVE;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

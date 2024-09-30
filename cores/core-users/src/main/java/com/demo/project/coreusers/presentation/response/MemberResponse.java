@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 @Schema(description = "단일 사용자 응답")
 public class MemberResponse {
+    private Long id;
     private String name;
     private Long totalView;
     private List<String> memberRoles;
@@ -28,6 +29,7 @@ public class MemberResponse {
                 .toList();
 
         return MemberResponse.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .totalView(entity.getTotalView())
                 .memberRoles(memberRoles)

@@ -1,0 +1,41 @@
+server:
+  port: 4000
+
+spring:
+  datasource:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: admin
+      username: root
+      password: dev00
+
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    consumer:
+      group-id: com.demo.project.worker.group
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      enable-auto-commit: false
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#      properties:
+#        spring:
+#          json:
+#            add:
+#              type:
+#                headers: false
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+      #      type: BATCH
+      concurrency: 10
+    topic:
+      profile-view: "com.demo.project.profile.view.topic"

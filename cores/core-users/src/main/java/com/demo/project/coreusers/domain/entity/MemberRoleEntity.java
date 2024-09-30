@@ -1,5 +1,6 @@
 package com.demo.project.coreusers.domain.entity;
 
+import com.demo.project.coreusers.domain.constant.MemberRdbConstant;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -14,9 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Getter
-@Table(name = "member_role", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"member_id", "member_role"})
-})
+@Table(name = "member_role")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @SQLRestriction("status != 'D'")
@@ -37,7 +36,7 @@ public class MemberRoleEntity {
 
     @Column(nullable = false, length = 1)
     @Builder.Default
-    private String status = "A";
+    private String status = MemberRdbConstant.STATUS_ACTIVE;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

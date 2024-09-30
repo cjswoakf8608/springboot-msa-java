@@ -4,7 +4,7 @@ import com.demo.project.apps.presentation.request.SearchRequest;
 import com.demo.project.apps.presentation.response.MemberApiResponse;
 import com.demo.project.apps.presentation.response.MembersApiResponse;
 
-public interface MemberUserCase {
+public interface MemberUseCase {
     MemberApiResponse findById(Long memberId);
     MembersApiResponse findAll(SearchRequest request);
 }
