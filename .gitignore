@@ -1,6 +1,7 @@
 /apis/**/build/**
 /cores/**/build/**
 /globals/**/build/**
+/workers/build/**
 /.idea/**
 
 .gradle/
