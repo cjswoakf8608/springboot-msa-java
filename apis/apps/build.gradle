@@ -3,11 +3,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 }
+
+
 
 bootJar {
     enabled = true
-//    mainClass = 'com.demo.project.apps.AppsApplication'
      archiveFileName = 'application.jar'
 }
 

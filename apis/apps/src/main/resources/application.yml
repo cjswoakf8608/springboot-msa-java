@@ -15,20 +15,20 @@ externals:
       auths:
         host: http://localhost:8001
         version: /v1
-        apis:
+        uris:
           token:
             resource: /tokens # JWT 토큰
     core-network: # cores 속한 MSA API 정의
       users:
         host: http://localhost:3001
         version: /v1
-        apis:
+        uris:
           members:
             resource: /members # 회원 정보
       products:
         host: http://localhost:3002
         version: /v1
-        apis:
+        uris:
           points:
             resource: /points # 포인트 정보
 

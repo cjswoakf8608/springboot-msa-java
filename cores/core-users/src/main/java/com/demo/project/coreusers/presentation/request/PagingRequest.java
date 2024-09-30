@@ -1,4 +1,4 @@
-package com.demo.project.coreusers.presentation.dto.request;
+package com.demo.project.coreusers.presentation.request;
 
 import lombok.Getter;
 import lombok.Setter;

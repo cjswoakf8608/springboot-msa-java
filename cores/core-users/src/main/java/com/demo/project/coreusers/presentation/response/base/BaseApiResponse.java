@@ -1,4 +1,4 @@
-package com.demo.project.coreusers.presentation.dto.response.base;
+package com.demo.project.coreusers.presentation.response.base;
 
 import com.demo.project.globals.domain.enumeration.ResponseApiStatus;
 import com.demo.project.globals.domain.util.DateTimeUtil;

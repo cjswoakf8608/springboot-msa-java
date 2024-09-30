@@ -1,10 +1,9 @@
-package com.demo.project.coreusers.presentation.exception;
+package com.demo.project.coreusers.presentation.response;
 
-import com.demo.project.coreusers.presentation.dto.response.base.BaseApiException;
-import com.demo.project.coreusers.presentation.dto.response.base.BaseApiResponse;
+import com.demo.project.coreusers.presentation.response.base.BaseApiException;
+import com.demo.project.coreusers.presentation.response.base.BaseApiResponse;
 import com.demo.project.globals.domain.constant.ResponseConstant;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

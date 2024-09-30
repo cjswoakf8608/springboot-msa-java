@@ -1,10 +1,10 @@
-package com.demo.project.coreusers.presentation.controller;
+package com.demo.project.apps.presentation.controller;
 
-import com.demo.project.coreusers.application.MemberService;
-import com.demo.project.coreusers.presentation.request.SearchRequest;
-import com.demo.project.coreusers.presentation.response.MemberResponse;
-import com.demo.project.coreusers.presentation.response.MembersResponse;
-import com.demo.project.coreusers.presentation.response.base.BaseApiResponse;
+import com.demo.project.apps.application.MemberService;
+import com.demo.project.apps.presentation.request.SearchRequest;
+import com.demo.project.apps.presentation.response.MemberApiResponse;
+import com.demo.project.apps.presentation.response.MembersApiResponse;
+import com.demo.project.apps.presentation.response.base.BaseApiResponse;
 import com.demo.project.globals.presentation.controller.BaseApiController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -26,8 +26,8 @@ public class MemberController extends BaseApiController {
 
     @Operation(summary = "단일 사용자 조회", description = "단일 사용자를 조회합니다.")
     @GetMapping("/{memberId:[0-9]+}")
-    public BaseApiResponse<MemberResponse> findById(@PathVariable Long memberId) {
-        MemberResponse response = memberService.findById(memberId);
+    public BaseApiResponse<MemberApiResponse> findById(@PathVariable Long memberId) {
+        MemberApiResponse response = memberService.findById(memberId);
 
         return BaseApiResponse.success(response);
     }
@@ -36,8 +36,8 @@ public class MemberController extends BaseApiController {
     @GetMapping("")
     @Parameter(name = "searches", description = "Format= key:value", array = @ArraySchema(schema = @Schema(implementation = String.class)))
     @Parameter(name = "sort", description = "Format= property:direction", array = @ArraySchema(schema = @Schema(implementation = String.class)))
-    public BaseApiResponse<MembersResponse> findAll(@ParameterObject SearchRequest searchRequest) {
-        MembersResponse response = memberService.findAll(searchRequest.toDto());
+    public BaseApiResponse<MembersApiResponse> findAll(@ParameterObject SearchRequest searchRequest) {
+        MembersApiResponse response = memberService.findAll(searchRequest);
 
         return BaseApiResponse.success(response);
     }

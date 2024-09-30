@@ -1,6 +1,6 @@
-package com.demo.project.coreusers.presentation.dto.response.base;
+package com.demo.project.apps.presentation.response.base;
 
-import com.demo.project.coreusers.domain.util.MessageUtil;
+import com.demo.project.apps.domain.util.MessageUtil;
 import com.demo.project.globals.domain.constant.ResponseConstant;
 import com.demo.project.globals.domain.util.DateTimeUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;

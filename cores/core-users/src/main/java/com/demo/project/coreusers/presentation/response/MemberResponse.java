@@ -1,4 +1,4 @@
-package com.demo.project.coreusers.presentation.dto.response;
+package com.demo.project.coreusers.presentation.response;
 
 import com.demo.project.coreusers.domain.entity.MemberEntity;
 import com.demo.project.coreusers.domain.entity.MemberRoleEntity;

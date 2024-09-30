@@ -1,4 +1,4 @@
-package com.demo.project.coreusers.presentation.dto.request;
+package com.demo.project.coreusers.presentation.request;
 
 import com.demo.project.coreusers.domain.model.Search;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,7 +12,7 @@ import java.util.Objects;
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @Data
-@Schema(description = "사용자 검색 조건")
+@Schema(description = "사용자 조건 검색")
 public class SearchRequest extends PagingRequest {
     private List<String> searches;
 
