@@ -1,6 +1,6 @@
 
 ## MSA (BFF Architecture)
-- 2024.09.30 까지 완성 예정
+- 2024.10.02 까지 완성 예정
 
 ## 개발환경
 
@@ -18,6 +18,7 @@
 ### docker-compose.yml
 - MongoDB
 - MariaDB
+- Kafka
 - Application Spring Boot/JDK 17
 
 ## MSA BFF 구조
