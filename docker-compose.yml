@@ -15,6 +15,16 @@ services:
     networks:
       - api_network
 
+  redis:
+    image: redis:6.2.6
+    container_name: redis
+    ports:
+      - 6380:6380
+    volumes:
+      - redis_data:/data
+    networks:
+      - core_network
+
   maria_db:
     container_name: maria_db
     image: mariadb
@@ -54,75 +64,78 @@ services:
     volumes:
       - kafka_data:/bitnami/kafka
 
-#  application_app_api:
-#    build:
-#      context: ./apis/apps
-#      dockerfile: Dockerfile
-#    restart: no
-#    depends_on:
-#      - mongo_db
-#    ports:
-#      - 8000:8000
-#    container_name: app_api
-#    networks:
-#      - api_network
-#
-#  application_auth_api:
-#    build:
-#      context: ./apis/auths
-#      dockerfile: Dockerfile
-#    restart: no
-#    depends_on:
-#      - mongo_db
-#    ports:
-#      - 8001:8001
-#    container_name: auth_api
-#    networks:
-#      - api_network
-#
-#  application_payment_api:
-#    build:
-#      context: ./apis/payments
-#      dockerfile: Dockerfile
-#    restart: no
-#    depends_on:
-#      - mongo_db
-#    ports:
-#      - 8002:8002
-#    container_name: payment_api
-#    networks:
-#      - api_network
-#
-#  application_user_core:
-#    build:
-#      context: ./cores/core-users
-#      dockerfile: Dockerfile
-#    restart: no
-#    depends_on:
-#      - maria_db
-#    ports:
-#      - 3001:3001
-#    container_name: user_core
-#    networks:
-#      - core_network
-#
-#  application_product_core:
-#    build:
-#      context: ./cores/core-products
-#      dockerfile: Dockerfile
-#    restart: no
-#    depends_on:
-#      - maria_db
-#    ports:
-#      - 3002:3002
-#    container_name: product_core
-#    networks:
-#      - core_network
+  application_app_api:
+    build:
+      context: ./apis/apps
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - mongo_db
+    ports:
+      - 8000:8000
+    container_name: app_api
+    networks:
+      - api_network
+
+  application_payment_api:
+    build:
+      context: ./apis/payments
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - mongo_db
+    ports:
+      - 8002:8002
+    container_name: payment_api
+    networks:
+      - api_network
+
+  application_user_core:
+    build:
+      context: ./cores/core-users
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - maria_db
+    ports:
+      - 3001:3001
+    container_name: user_core
+    networks:
+      - core_network
+
+  application_product_core:
+    build:
+      context: ./cores/core-products
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - maria_db
+    ports:
+      - 3002:3002
+    container_name: product_core
+    networks:
+      - core_network
+
+  application_worker_core:
+    build:
+      context: ./cores/workers
+      dockerfile: Dockerfile
+    restart: no
+    depends_on:
+      - maria_db
+      - redis
+    ports:
+      - 4000:4000
+    container_name: worker_core
+    networks:
+      - core_network
 
 volumes:
   mongo_data:
     driver: local
   kafka_data:
+    driver: local
+  redis_data:
     driver: local
 
 networks:
