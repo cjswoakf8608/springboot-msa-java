@@ -29,7 +29,8 @@
   ![img.png](img/img-clean-architecture.png)
 
 ## Hexagonal Architecture 의존성 역전의 법칙 적용
-- 외부에서 내부로의 의존성을 허용하지 않는다.
+- 외부에서 내부 layer 접근을 허용
+- 내부에서 외부 layer 접근을 허용하지 않음
   - 따라서 의존성 역전의 법칙으로 Infrastructure를 통해 외부 assets 접근을 적용
   - 1. FeignClient: 의존성 역전의 법칙에 의한 Infrastructure FeignClient 접근
   ![img.png](img/img-reverse-di.png)
