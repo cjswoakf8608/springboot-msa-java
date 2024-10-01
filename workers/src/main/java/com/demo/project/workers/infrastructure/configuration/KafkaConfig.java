@@ -43,7 +43,7 @@ public class KafkaConfig {
     public ConsumerFactory<String, ProfileViewEvent> profileViewConsumerFactory() {
         Map<String, Object> props = consumerConfigs();
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        props.put(JsonDeserializer.TYPE_MAPPINGS, "profileViewRequest:com.demo.project.workers.presentation.request.ProfileViewRequest");
+        props.put(JsonDeserializer.TYPE_MAPPINGS, "ProfileViewEvent:com.demo.project.workers.presentation.request.ProfileViewEvent");
         props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, ProfileViewEvent.class.getName());
 
         return new DefaultKafkaConsumerFactory<>(

@@ -2,6 +2,7 @@
 /cores/**/build/**
 /globals/**/build/**
 /workers/build/**
+/batches/build/**
 /.idea/**
 
 .gradle/

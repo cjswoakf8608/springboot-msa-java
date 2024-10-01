@@ -3,7 +3,7 @@ package com.demo.project.coreproducts.infrastructure.persistence.database.impl;
 import com.demo.project.coreproducts.domain.entity.PointInfoEntity;
 import com.demo.project.coreproducts.domain.entity.QPointInfoEntity;
 import com.demo.project.coreproducts.domain.model.Search;
-import com.demo.project.coreproducts.infrastructure.persistence.database.PointInfoRepositoryInterface;
+import com.demo.project.coreproducts.infrastructure.persistence.database.PointInfoJpaRepository;
 import com.demo.project.coreproducts.infrastructure.persistence.database.builder.QueryBuilderFactory;
 import com.demo.project.coreproducts.infrastructure.persistence.database.common.QuerydslRepository;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -11,16 +11,17 @@ import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
 @Slf4j
-@Service
-public class PointInfoRepositoryInterfaceImpl extends QuerydslRepository implements PointInfoRepositoryInterface {
+@Repository
+public class PointInfoJpaRepositoryImpl extends QuerydslRepository implements PointInfoJpaRepository {
 
-	public PointInfoRepositoryInterfaceImpl() {
+	public PointInfoJpaRepositoryImpl() {
 		super(PointInfoEntity.class);
     }
 

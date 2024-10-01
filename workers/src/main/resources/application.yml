@@ -9,6 +9,27 @@ spring:
       database: admin
       username: root
       password: dev00
+    redis:
+      host: localhost
+      port: 6379
+    database:
+      master:
+        jdbc-url: jdbc:mariadb://localhost:3307/users?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+        username: users
+        password: dev00_users
+        driver-class-name: org.mariadb.jdbc.Driver
+        slave:
+          jdbc-url: jdbc:mariadb://localhost:3307/users?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+          username: users_slave
+          password: dev00_users
+          driver-class-name: org.mariadb.jdbc.Driver
+        jpa:
+          show-sql: true
+          properties:
+            hibernate:
+              format_sql: true
+              use_sql_comments: true
+
   kafka:
     bootstrap-servers: localhost:9092
     consumer:

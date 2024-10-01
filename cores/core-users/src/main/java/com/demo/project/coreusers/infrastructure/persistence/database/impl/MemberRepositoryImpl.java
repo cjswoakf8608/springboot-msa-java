@@ -12,6 +12,7 @@ import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
-@Service
+@Repository
 public class MemberRepositoryImpl extends QuerydslRepository implements MemberRepository {
 	private final MemberJpaRepository memberJpaRepository;
 
