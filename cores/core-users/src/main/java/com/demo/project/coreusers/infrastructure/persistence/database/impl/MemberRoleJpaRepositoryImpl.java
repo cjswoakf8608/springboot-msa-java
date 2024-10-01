@@ -12,16 +12,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
 @Slf4j
 @Repository
-public class MemberRoleRepositoryImpl extends QuerydslRepository implements MemberRoleRepository {
+public class MemberRoleJpaRepositoryImpl extends QuerydslRepository implements MemberRoleRepository {
 
-	public MemberRoleRepositoryImpl() {
+	public MemberRoleJpaRepositoryImpl() {
 		super(MemberRoleEntity.class);
 	}
 

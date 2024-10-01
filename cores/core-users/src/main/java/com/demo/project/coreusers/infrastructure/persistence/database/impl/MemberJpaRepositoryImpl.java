@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,10 +20,10 @@ import java.util.Optional;
 
 @Slf4j
 @Repository
-public class MemberRepositoryImpl extends QuerydslRepository implements MemberRepository {
+public class MemberJpaRepositoryImpl extends QuerydslRepository implements MemberRepository {
 	private final MemberJpaRepository memberJpaRepository;
 
-	public MemberRepositoryImpl(MemberJpaRepository memberJpaRepository) {
+	public MemberJpaRepositoryImpl(MemberJpaRepository memberJpaRepository) {
 		super(MemberEntity.class);
         this.memberJpaRepository = memberJpaRepository;
     }

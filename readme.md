@@ -1,5 +1,5 @@
 
-## MSA (BFF Architecture)
+## MSA BFF(Backend For Frontend) Architecture
 - 2024.10.02 까지 완성 예정
 
 ## 개발환경
@@ -14,6 +14,7 @@
 - JUnit 5
 - MariaDB 11.5.2
 - MongoDB 5.0.2
+- Kafka 3.7
 
 ### docker-compose.yml
 - MongoDB
@@ -22,7 +23,27 @@
 - Application Spring Boot/JDK 17
 
 ## MSA BFF 구조
-  ![img.png](img/img.png)
+  ![img.png](img/img-architecture.png)
+
+## Hexagonal Architecture 적용
+  ![img.png](img/img-clean-architecture.png)
+
+## Hexagonal Architecture 의존성 역전의 법칙 적용
+- 외부에서 내부로의 의존성을 허용하지 않는다.
+  - 따라서 의존성 역전의 법칙으로 Infrastructure를 통해 외부 assets 접근을 적용
+  - 1. FeignClient: 의존성 역전의 법칙에 의한 Infrastructure FeignClient 접근
+  ![img.png](img/img-reverse-di.png)
+
+  - 2. JPA: 의존성 역전의 법칙에 의한 Infrastructure RDS 접근
+  ![img_1.png](img/img-reverse-di-rds.png)
+
+  - 3. 의존성 역전의 법칙을 기반으로 "원하는 기능, lib, 미들웨어 등 변경" 가능
+  ![img.png](img/img-change.png)
+  
+
+
+
+
 
 
 
