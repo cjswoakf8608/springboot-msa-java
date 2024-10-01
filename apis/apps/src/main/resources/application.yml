@@ -9,6 +9,11 @@ spring:
       database: admin
       username: root
       password: dev00
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 externals:
   # apis - 각 MSA API 정의

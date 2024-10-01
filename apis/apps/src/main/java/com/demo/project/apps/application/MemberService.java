@@ -1,10 +1,10 @@
 package com.demo.project.apps.application;
 
-import com.demo.project.apps.domain.document.ProfileViewDocument;
-import com.demo.project.apps.domain.service.ProfileViewPersistenceService;
+import com.demo.project.apps.domain.service.QueueMessagingService;
 import com.demo.project.apps.domain.service.UsersIntegrationService;
 import com.demo.project.apps.infrastructure.integration.users.response.MemberResponse;
 import com.demo.project.apps.infrastructure.integration.users.response.MembersResponse;
+import com.demo.project.apps.infrastructure.messaging.request.ProfileViewEvent;
 import com.demo.project.apps.presentation.request.SearchRequest;
 import com.demo.project.apps.presentation.response.MemberApiResponse;
 import com.demo.project.apps.presentation.response.MembersApiResponse;
@@ -20,7 +20,7 @@ import java.util.Objects;
 @Service
 public class MemberService implements MemberUseCase {
 	private final UsersIntegrationService usersIntegrationService;
-	private final ProfileViewPersistenceService profileViewPersistenceService;
+	private final QueueMessagingService queueMessagingService;
 
 	@Override
 	public MemberApiResponse findById(Long memberId) {
@@ -30,9 +30,10 @@ public class MemberService implements MemberUseCase {
 			throw new BaseApiException(300);
 		}
 
-		// mongoDB에 조회수 증가 (원자성 보장 증가)
-		ProfileViewDocument profileViewDocument = profileViewPersistenceService.incrementTotalViewAndGet(memberId);
-		member.setTotalView(profileViewDocument.getTotalView());
+		// Kafka로 프로필 조회 이벤트 발송
+		queueMessagingService.sendProfileView(ProfileViewEvent.builder()
+				.memberId(memberId)
+				.build());
 
 		return MemberApiResponse.response(member);
 	}
