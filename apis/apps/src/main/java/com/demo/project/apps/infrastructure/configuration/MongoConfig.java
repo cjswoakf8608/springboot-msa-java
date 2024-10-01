@@ -1,4 +1,4 @@
-package com.demo.project.workers.infrastructure.configuration;
+package com.demo.project.apps.infrastructure.configuration;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

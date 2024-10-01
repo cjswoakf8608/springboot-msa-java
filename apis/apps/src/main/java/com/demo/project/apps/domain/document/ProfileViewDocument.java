@@ -1,4 +1,4 @@
-package com.demo.project.workers.domain.document;
+package com.demo.project.apps.domain.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Builder
 @Getter
-@Document(collection = "profile_view")
+@Document(collection = "profile_view_transaction")
 public class ProfileViewDocument extends BaseMongoDocument {
     private Long memberId;
-    private Long totalView;
 }
