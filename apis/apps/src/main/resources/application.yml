@@ -4,14 +4,14 @@ server:
 spring:
   datasource:
     mongodb:
-      host: localhost
+      host: mongo_db
       port: 27017
       database: admin
       username: root
       password: dev00
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: kafka:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
@@ -20,7 +20,7 @@ externals:
   apis:
     api-network:
       payments:
-        host: http://localhost:8002
+        host: http://payment:8002
         version: /v1
         uris:
           payments:
@@ -28,13 +28,13 @@ externals:
             api-confirm: /confirm # 결제 확인
     core-network: # cores 속한 MSA API 정의
       users:
-        host: http://localhost:3001
+        host: http://user:3001
         version: /v1
         uris:
           members:
             resource: /members # 회원 정보
       products:
-        host: http://localhost:3002
+        host: http://product:3002
         version: /v1
         uris:
           points:

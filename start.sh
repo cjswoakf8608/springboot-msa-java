@@ -12,5 +12,7 @@ cd "$(dirname "$0")"
 (cd cores/core-users && ./gradlew clean bootJar --no-daemon)
 (cd workers && ./gradlew clean bootJar --no-daemon)
 
+rm -rf ~/docker/mariadb/var/lib/mysql/*
+
 # docker-compose 실행
 docker-compose up --build

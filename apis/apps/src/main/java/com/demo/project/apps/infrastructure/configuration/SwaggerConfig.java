@@ -24,7 +24,7 @@ public class SwaggerConfig {
 
     private Info apiInfo() {
         return new Info()
-            .title("Core Apps API")
+            .title("Apps API")
             .description("Swagger")
             .version("1.0.0");
     }

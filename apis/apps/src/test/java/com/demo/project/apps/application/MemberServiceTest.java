@@ -99,7 +99,7 @@ class MemberServiceTest {
         assertNotNull(result);
         assertEquals(memberId, result.getId());
 
-        // Verify that profileViewPersistenceService and queueMessagingService were called
+        // Verify
         verify(profileViewPersistenceService, times(1)).save(any(ProfileViewDocument.class));
         verify(queueMessagingService, times(1)).sendProfileView(any(ProfileViewEvent.class));
     }

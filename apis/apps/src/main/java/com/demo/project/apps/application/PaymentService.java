@@ -3,6 +3,7 @@ package com.demo.project.apps.application;
 import com.demo.project.apps.domain.service.PaymentsIntegrationService;
 import com.demo.project.apps.domain.service.ProductsIntegrationService;
 import com.demo.project.apps.domain.service.QueueMessagingService;
+import com.demo.project.apps.infrastructure.integration.payments.request.PaymentConfirmRequest;
 import com.demo.project.apps.infrastructure.integration.payments.response.PaymentConfirmResponse;
 import com.demo.project.apps.infrastructure.integration.products.response.PointInfosResponse;
 import com.demo.project.apps.infrastructure.integration.users.response.MembersResponse;
@@ -41,14 +42,14 @@ public class PaymentService implements PaymentUseCase {
 		String paymentKey = request.getPaymentKey();
 		String orderId = request.getOrderId();
 		Integer amount = request.getAmount();
-//		PaymentConfirmResponse payment = paymentsIntegrationService.confirmPayment(PaymentConfirmRequest.builder()
-//				.paymentKey(paymentKey)
-//				.orderId(orderId)
-//				.amount(amount)
-//				.build());
-//		if (Objects.isNull(payment) || payment.isEmpty()) {
-//			throw new BaseApiException(3000);
-//		}
+		PaymentConfirmResponse payment = paymentsIntegrationService.confirmPayment(PaymentConfirmRequest.builder()
+				.paymentKey(paymentKey)
+				.orderId(orderId)
+				.amount(amount)
+				.build());
+		if (Objects.isNull(payment) || payment.isEmpty()) {
+			throw new BaseApiException(3000);
+		}
 
 		PointInfosResponse points = productsIntegrationService.findPointInfos(SearchRequest.builder()
 				.searches(Collections.singletonList("pointType:" + "PURCHASE_POINT"))
@@ -56,7 +57,6 @@ public class PaymentService implements PaymentUseCase {
 		if (BooleanUtils.isFalse(Objects.isNull(points) || points.getPoints().isEmpty())) {
 			BigDecimal pointRatio = points.getPoints().get(0).getPointRatio();
 			BigDecimal pointSave = BigDecimal.valueOf(request.getAmount()).multiply(pointRatio);
-
 
 			// Kafka로 적립 이벤트 발송
 			queueMessagingService.sendPointSave(PointSaveEvent.builder()

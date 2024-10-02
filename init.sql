@@ -30,28 +30,34 @@ FLUSH PRIVILEGES;
     * member: 회원 정보
  */
 USE users;
-create table if not exists member
+drop table if exists member;
+create table member
 (
-    id                  bigint auto_increment comment '회원 고유 ID'
+    id         bigint auto_increment comment '회원 고유 ID'
         primary key,
-    login_id            varchar(320)                         not null comment '로그인 ID',
-    password            varchar(100)                         not null comment '로그인 비밀번호',
-    name                varchar(100)                         null comment '실 성함',
-    status              varchar(1) default 'A'               not null comment '상태.  A: 활성, D:탈퇴, S: 휴면',
-    created_at          datetime   default CURRENT_TIMESTAMP not null comment '등록일시',
-    updated_at          datetime   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '수정일시'
+    login_id   varchar(320)                           not null comment '로그인 ID',
+    password   varchar(100)                           not null comment '로그인 비밀번호',
+    total_view bigint     default 0                   not null comment '프로필 조회 수',
+    name       varchar(100)                           null comment '실 성함',
+    status     varchar(1) default 'A'                 not null comment '상태.  A: 활성, D:탈퇴, S: 휴면',
+    created_at datetime   default current_timestamp() not null comment '등록일시',
+    updated_at datetime   default current_timestamp() not null on update current_timestamp() comment '수정일시'
 )
     comment '회원 정보';
+INSERT INTO users.member (id, login_id, password, total_view, name, status, created_at, updated_at) VALUES (1, 'test', 'test', 2, '조용석', 'A', '2024-09-27 09:41:39', '2024-10-02 08:45:02');
+INSERT INTO users.member (id, login_id, password, total_view, name, status, created_at, updated_at) VALUES (2, 'test2', 'test2', 1, '조용석', 'A', '2024-09-29 05:27:43', '2024-10-02 01:53:54');
+INSERT INTO users.member (id, login_id, password, total_view, name, status, created_at, updated_at) VALUES (3, 'test3', 'test3', 0, '김말숙', 'A', '2024-09-29 05:27:43', '2024-09-29 05:27:43');
+INSERT INTO users.member (id, login_id, password, total_view, name, status, created_at, updated_at) VALUES (4, 'test4', 'test4', 0, '조용석', 'D', '2024-09-29 05:27:56', '2024-09-29 05:27:56');
 
 
+
+drop table if exists member_point;
 create table if not exists member_point
 (
     id                  bigint auto_increment comment '회원 포인트 정보 고유 ID'
         primary key,
     member_id  bigint                               not null comment '회원 고유 ID',
     total_point         decimal(10, 2)                         null comment '총 포인트',
-    use_point         decimal(10, 2)                         null comment '사용한 포인트',
-    remain_point         decimal(10, 2)                         null comment '남은 포인트',
     status              varchar(1) default 'A'               not null comment '상태.  A: 활성, D:삭제',
     created_at          datetime   default CURRENT_TIMESTAMP not null comment '등록일시',
     updated_at          datetime   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '수정일시',
@@ -59,8 +65,12 @@ create table if not exists member_point
         foreign key (member_id) references member (id)
 )
     comment '회원 포인트 정보';
+INSERT INTO users.member_point (id, member_id, total_point, status, created_at, updated_at) VALUES (1, 1, 0.00, 'A', '2024-09-28 11:17:06', '2024-10-02 08:51:46');
+INSERT INTO users.member_point (id, member_id, total_point, status, created_at, updated_at) VALUES (2, 2, 0.00, 'A', '2024-09-29 05:33:21', '2024-09-29 05:33:21');
+INSERT INTO users.member_point (id, member_id, total_point, status, created_at, updated_at) VALUES (3, 3, 0.00, 'A', '2024-09-29 05:33:21', '2024-09-29 05:33:21');
+INSERT INTO users.member_point (id, member_id, total_point, status, created_at, updated_at) VALUES (4, 4, 0.00, 'A', '2024-09-29 05:33:21', '2024-09-29 05:33:21');
 
-
+drop table if exists member_role;
 create table if not exists member_role
 (
     id                  bigint auto_increment comment '회원 Role 고유 ID'
@@ -76,6 +86,14 @@ create table if not exists member_role
         unique (member_id, member_role)
 )
     comment '회원 Role 정보';
+INSERT INTO users.member_role (id, member_id, member_role, status, created_at, updated_at) VALUES (1, 1, 'ADMIN', 'A', '2024-09-27 09:43:20', '2024-09-27 09:43:20');
+INSERT INTO users.member_role (id, member_id, member_role, status, created_at, updated_at) VALUES (2, 1, 'FREELANCER', 'A', '2024-09-27 09:43:20', '2024-09-27 09:43:20');
+INSERT INTO users.member_role (id, member_id, member_role, status, created_at, updated_at) VALUES (3, 2, 'FREELANCER', 'A', '2024-09-29 05:32:53', '2024-09-29 05:32:53');
+INSERT INTO users.member_role (id, member_id, member_role, status, created_at, updated_at) VALUES (4, 3, 'FREELANCER', 'A', '2024-09-29 05:32:53', '2024-09-29 05:32:53');
+INSERT INTO users.member_role (id, member_id, member_role, status, created_at, updated_at) VALUES (5, 4, 'FREELANCER', 'D', '2024-09-29 05:32:53', '2024-09-29 05:32:53');
+
+
+
 
 
 
@@ -85,6 +103,7 @@ create table if not exists member_role
     * point_info: 포인트 정보
  */
 USE products;
+drop table if exists point_info;
 create table if not exists point_info
 (
     id                  bigint auto_increment comment '포인트 정보 고유 ID'
@@ -98,3 +117,5 @@ create table if not exists point_info
         unique (point_type)
 )
     comment '포인트 정보';
+INSERT INTO products.point_info (point_ratio, point_type, status) VALUES (1.000, 'PURCHASE_POINT', 'A');
+

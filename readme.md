@@ -26,9 +26,10 @@
 - Application Spring Boot/JDK 17
 
 ## MSA BFF 구조
-  ![img.png](img/img-architecture.png)
+  ![img.png](img/img.png)
 
 ## Hexagonal Architecture 적용
+모든 MSA 도메인은 Hexagonal Architecture에 기반하여 Package 구조및 의존성 개발
   ![img.png](img/img-clean-architecture.png)
 
 ## Hexagonal Architecture 의존성 역전의 법칙 적용
