@@ -3,7 +3,6 @@ package com.demo.project.coreusers.infrastructure.persistence.database.impl;
 import com.demo.project.coreusers.domain.entity.MemberEntity;
 import com.demo.project.coreusers.domain.entity.QMemberEntity;
 import com.demo.project.coreusers.domain.model.Search;
-import com.demo.project.coreusers.infrastructure.persistence.database.MemberJpaRepository;
 import com.demo.project.coreusers.infrastructure.persistence.database.MemberRepository;
 import com.demo.project.coreusers.infrastructure.persistence.database.builder.QueryBuilderFactory;
 import com.demo.project.coreusers.infrastructure.persistence.database.common.QuerydslRepository;
@@ -16,26 +15,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 @Repository
 public class MemberJpaRepositoryImpl extends QuerydslRepository implements MemberRepository {
-	private final MemberJpaRepository memberJpaRepository;
 
-	public MemberJpaRepositoryImpl(MemberJpaRepository memberJpaRepository) {
+	public MemberJpaRepositoryImpl() {
 		super(MemberEntity.class);
-        this.memberJpaRepository = memberJpaRepository;
     }
-
-	/**
-	 * 단일 사용자 검색
-	 * jpa query method
-	 */
-	@Override
-	public Optional<MemberEntity> getById(Long memberId) {
-		return memberJpaRepository.findById(memberId);
-	}
 
 	/**
 	 * 사용자 조건 검색

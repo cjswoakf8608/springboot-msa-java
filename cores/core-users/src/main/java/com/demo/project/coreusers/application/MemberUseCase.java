@@ -9,8 +9,8 @@ import org.springframework.data.domain.Page;
 import java.util.Optional;
 
 public interface MemberUseCase {
-    Optional<MemberEntity> getById(Long memberId);
+//    Optional<MemberEntity> getById(Long memberId);
     Page<MemberEntity> getAll(Search search);
-    MemberResponse findById(Long memberId);
+//    MemberResponse findById(Long memberId);
     MembersResponse findAll(Search search);
 }

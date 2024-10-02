@@ -1,5 +1,6 @@
 package com.demo.project.apps.domain.service;
 
+import com.demo.project.apps.infrastructure.messaging.request.PointSaveEvent;
 import com.demo.project.apps.infrastructure.messaging.request.ProfileViewEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,10 @@ public class QueueMessagingService {
 
 	public void sendProfileView(ProfileViewEvent event) {
 		queueMassagingInterface.sendProfileView(event);
+	}
+
+	public void sendPointSave(PointSaveEvent event) {
+		queueMassagingInterface.sendPointSave(event);
 	}
 }
 

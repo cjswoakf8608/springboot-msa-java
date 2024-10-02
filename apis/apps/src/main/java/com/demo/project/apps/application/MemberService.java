@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Objects;
 
 @Slf4j
@@ -26,14 +27,22 @@ public class MemberService implements MemberUseCase {
 	private final QueueMessagingService queueMessagingService;
 
 	@Override
-	public MemberApiResponse findById(Long memberId) {
+	public MembersResponse getById(Long memberId) {
 		// Users MSA로 사용자 조회
-		MemberResponse member = usersIntegrationService.findById(memberId);
-		if (Objects.isNull(member)) {
+		return usersIntegrationService.findAll(SearchRequest.builder()
+				.searches(Collections.singletonList("id:" + memberId))
+				.build());
+	}
+
+	@Override
+	public MemberApiResponse findById(Long memberId) {
+		MembersResponse members = this.getById(memberId);
+		if (Objects.isNull(members) || members.getMembers().isEmpty()) {
 			throw new BaseApiException(300);
 		}
+		MemberResponse member = members.getMembers().get(0);
 
-		// mongoDB에 프로필 조회 이벤트 저장 (아카이브용)
+		// mongoDB에 프로필 조회 이벤트 저장 (아카이브)
 		profileViewPersistenceService.save(ProfileViewDocument.builder()
 				.memberId(memberId)
 				.build());
@@ -47,6 +56,7 @@ public class MemberService implements MemberUseCase {
 		return MemberApiResponse.response(member);
 	}
 
+	@Override
 	public MembersApiResponse findAll(SearchRequest request) {
 		MembersResponse members = usersIntegrationService.findAll(request);
 		if (Objects.isNull(members)) {

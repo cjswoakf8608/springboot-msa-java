@@ -35,11 +35,12 @@ public class DistributeLockAspect {
             if (!isLocked) {
                 throw new Exception("Failed lock > key: " + key);
             }
-
+            log.info("Locked for key: {}", key);
             return joinPoint.proceed();
         } finally {
             if (lock.isHeldByCurrentThread()) {
                 lock.unlock();
+                log.info("Lock released for key: {}", key);
             }
         }
     }

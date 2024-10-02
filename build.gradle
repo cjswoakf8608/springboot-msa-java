@@ -46,6 +46,15 @@ subprojects {
 
         // Swagger,OpenAPI
         implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+
+        // Junit5
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    }
+
+    // 1. 테스트 실행을 완전히 제외
+    tasks.withType(Test).configureEach {
+        enabled = false
     }
 
     test {

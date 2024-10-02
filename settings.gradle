@@ -6,7 +6,6 @@ pluginManagement {
 
 rootProject.name = 'spring'
 
-include 'apis:auths'
 include 'apis:apps'
 include 'apis:payments'
 include 'cores:core-users'

@@ -5,6 +5,5 @@ import com.demo.project.apps.infrastructure.integration.users.response.MembersRe
 import com.demo.project.apps.presentation.request.SearchRequest;
 
 public interface UsersIntegrationInterface {
-    MemberResponse findById(Long memberId);
     MembersResponse findAll(SearchRequest searchRequest);
 }

@@ -1,8 +1,8 @@
 package com.demo.project.coreproducts.infrastructure.persistence.database;
 
-import com.demo.project.coreproducts.domain.entity.PointInfoEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.demo.project.coreproducts.domain.service.PointInfoPersistenceInterface;
+import org.springframework.stereotype.Repository;
 
-
-public interface PointInfoRepository extends JpaRepository<PointInfoEntity, Long> {
+@Repository
+public interface PointInfoRepository extends PointInfoPersistenceInterface {
 }

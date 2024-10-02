@@ -11,10 +11,6 @@ import org.springframework.stereotype.Service;
 public class UsersIntegrationService  {
 	private final UsersIntegrationInterface usersIntegrationInterface;
 
-	public MemberResponse findById(Long memberId) {
-		return usersIntegrationInterface.findById(memberId);
-	}
-
 	public MembersResponse findAll(SearchRequest request) {
 		return usersIntegrationInterface.findAll(request);
 	}

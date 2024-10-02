@@ -35,12 +35,6 @@ public class MemberPointEntity {
     @Column(name = "total_point", precision = 10, scale = 2)
     private BigDecimal totalPoint;
 
-    @Column(name = "use_point", precision = 10, scale = 2)
-    private BigDecimal usePoint;
-
-    @Column(name = "remain_point", precision = 10, scale = 2)
-    private BigDecimal remainPoint;
-
     @Column(nullable = false, length = 1)
     @Builder.Default
     private String status = MemberRdbConstant.STATUS_ACTIVE;

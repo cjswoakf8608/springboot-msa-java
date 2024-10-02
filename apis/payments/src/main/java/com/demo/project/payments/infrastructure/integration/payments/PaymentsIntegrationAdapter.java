@@ -22,14 +22,8 @@ public class PaymentsIntegrationAdapter implements PaymentsIntegrationInterface 
 
     @Override
     public TossPaymentResponse confirmPayment(TossPaymentRequest request) {
+        // PaymentFeignErrorDecoder 에서 에러 처리됨
         ResponseEntity<BaseApiResponse<TossPaymentResponse>> response = paymentsIntegrationClient.confirmPayment(request);
-
-//        String encodedSecretKey = "Basic " + Base64.getEncoder().encodeToString(("test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6" + ":").getBytes());
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//        headers.set("Authorization", encodedSecretKey);
-
 
         return Optional.ofNullable(response.getBody())
                 .map(BaseApiResponse::getData)

@@ -12,10 +12,6 @@ import java.util.Optional;
 public class MemberPersistenceService  {
 	private final MemberPersistenceInterface memberPersistenceInterface;
 
-	public Optional<MemberEntity> findById(Long memberId) {
-		return memberPersistenceInterface.getById(memberId);
-	}
-
 	public Page<MemberEntity> findAll(Search search) {
 		return memberPersistenceInterface.findAll(search);
 	}

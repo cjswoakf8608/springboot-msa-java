@@ -1,5 +1,6 @@
 package com.demo.project.workers.infrastructure.configuration;
 
+import com.demo.project.workers.presentation.request.PointSaveEvent;
 import com.demo.project.workers.presentation.request.ProfileViewEvent;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -52,13 +53,35 @@ public class KafkaConfig {
                 new JsonDeserializer<>(ProfileViewEvent.class, false));
     }
 
-
-
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, ProfileViewEvent> profileViewKafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, ProfileViewEvent> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(profileViewConsumerFactory());
+        factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE); // 수동 ack
+        factory.setConcurrency(1); // 1개의 쓰레드로 처리 (TEST를 위해 1로 설정, 실제 개발에서는 적절한 값을 설정해야 함)
+
+        return factory;
+    }
+
+    @Bean
+    public ConsumerFactory<String, PointSaveEvent> pointSaveConsumerFactory() {
+        Map<String, Object> props = consumerConfigs();
+        props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+        props.put(JsonDeserializer.TYPE_MAPPINGS, "PointSaveEvent:com.demo.project.workers.presentation.request.PointSaveEvent");
+        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, PointSaveEvent.class.getName());
+
+        return new DefaultKafkaConsumerFactory<>(
+                props,
+                new StringDeserializer(),
+                new JsonDeserializer<>(PointSaveEvent.class, false));
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, PointSaveEvent> pointSaveKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, PointSaveEvent> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(pointSaveConsumerFactory());
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE); // 수동 ack
         factory.setConcurrency(1); // 1개의 쓰레드로 처리 (TEST를 위해 1로 설정, 실제 개발에서는 적절한 값을 설정해야 함)
 

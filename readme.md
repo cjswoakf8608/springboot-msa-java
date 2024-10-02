@@ -8,18 +8,21 @@
 - Gradle 8.10.2
 - Spring Boot 3.2.1
     - spring dependency management 1.1.4
-    - spring-validation
     - spring-data-mongodb
     - spring-data-jpa
+    - spring-data-redis
+    - spring-kafka
 - JUnit 5
 - MariaDB 11.5.2
 - MongoDB 5.0.2
 - Kafka 3.7
+- Redis
 
 ### docker-compose.yml
 - MongoDB
 - MariaDB
 - Kafka
+- Redis
 - Application Spring Boot/JDK 17
 
 ## MSA BFF 구조

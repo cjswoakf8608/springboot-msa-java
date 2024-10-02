@@ -12,14 +12,10 @@ import java.math.BigDecimal;
 @Schema(description = "단일 사용자 포인트 응답")
 public class MemberPointResponse {
     private BigDecimal totalPoint;
-    private BigDecimal usePoint;
-    private BigDecimal remainPoint;
 
     public static MemberPointResponse response(MemberPointEntity entity) {
         return MemberPointResponse.builder()
                 .totalPoint(entity.getTotalPoint())
-                .usePoint(entity.getUsePoint())
-                .remainPoint(entity.getRemainPoint())
                 .build();
     }
 }

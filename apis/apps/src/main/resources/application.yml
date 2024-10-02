@@ -18,13 +18,14 @@ spring:
 externals:
   # apis - 각 MSA API 정의
   apis:
-    api-network: # apis 속한 MSA API 정의
-      auths:
-        host: http://localhost:8001
+    api-network:
+      payments:
+        host: http://localhost:8002
         version: /v1
         uris:
-          token:
-            resource: /tokens # JWT 토큰
+          payments:
+            resource: /payments # 포인트 정보
+            api-confirm: /confirm # 결제 확인
     core-network: # cores 속한 MSA API 정의
       users:
         host: http://localhost:3001

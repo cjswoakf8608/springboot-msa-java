@@ -17,7 +17,6 @@ dependencies {
 
 bootJar {
     enabled = true
-//    mainClass = 'com.demo.project.coreusers.CoreUsersApplication'
     archiveFileName = 'application.jar'
 }
 

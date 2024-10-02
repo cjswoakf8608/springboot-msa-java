@@ -1,6 +1,6 @@
 package com.demo.project.workers.presentation.consumer;
 
-import com.demo.project.workers.application.ProfileViewService;
+import com.demo.project.workers.application.MemberService;
 import com.demo.project.workers.presentation.request.ProfileViewEvent;
 import com.demo.project.workers.presentation.response.base.BaseApiException;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class ProfileViewEventConsumer {
-    private final ProfileViewService profileViewService;
+    private final MemberService memberService;
 
     @KafkaListener(
             topics = "${spring.kafka.topic.profile-view}",
@@ -26,13 +26,13 @@ public class ProfileViewEventConsumer {
     public void consume(@Payload ProfileViewEvent event, Acknowledgment acknowledgment) {
         try {
             log.info("ProfileViewEventConsumer: {}", event);
-            profileViewService.incrementTotalView(event.getMemberId());
+            memberService.incrementTotalView(event.getMemberId());
         } catch (BaseApiException e) {
             // 개발자가 예상하고 예외처리한 custom exception handling로 DLQ로 이동하지 않음
             log.error("BaseException[{}]: {}", e.getCode(), e.getMessage());
         } catch (Exception e) {
             log.error("Exception: {}", e.getMessage());
-            profileViewService.sendProfileViewDlq(event.getMemberId());
+            memberService.sendProfileViewDlq(event.getMemberId());
 
         } finally {
             // 항상 ack를 보내서 Offset을 commit

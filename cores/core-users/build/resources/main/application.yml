@@ -13,12 +13,12 @@ springdoc:
 spring:
   datasource:
     master:
-      jdbc-url: jdbc:mariadb://localhost:3307/users?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+      jdbc-url: jdbc:mariadb://localhost:3306/users?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
       username: users
       password: dev00_users
       driver-class-name: org.mariadb.jdbc.Driver
     slave:
-      jdbc-url: jdbc:mariadb://localhost:3307/users?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+      jdbc-url: jdbc:mariadb://localhost:3306/users?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
       username: users_slave
       password: dev00_users
       driver-class-name: org.mariadb.jdbc.Driver
@@ -26,8 +26,10 @@ spring:
     show-sql: true
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
         format_sql: true
         use_sql_comments: true
+
 
 
 

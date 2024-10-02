@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 (cd apis/payments && ./gradlew clean bootJar --no-daemon)
 (cd cores/core-products && ./gradlew clean bootJar --no-daemon)
 (cd cores/core-users && ./gradlew clean bootJar --no-daemon)
-(cd wordkers && ./gradlew clean bootJar --no-daemon)
+(cd workers && ./gradlew clean bootJar --no-daemon)
 
 # docker-compose 실행
 docker-compose up --build

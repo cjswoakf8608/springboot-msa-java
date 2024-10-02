@@ -24,11 +24,5 @@ public class UsersIntegrationAdapter implements UsersIntegrationInterface {
                 .orElse(null);
     }
 
-    @Override
-    public MemberResponse findById(Long memberId) {
-        ResponseEntity<BaseApiResponse<MemberResponse>> response = usersIntegrationClient.findById(memberId);
-        return Optional.ofNullable(response.getBody())
-                .map(BaseApiResponse::getData)
-                .orElse(null);
-    }
+
 }
