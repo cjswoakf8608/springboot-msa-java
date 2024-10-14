@@ -13,7 +13,7 @@
 - Spring Boot 3.2.1
     - spring dependency management 1.1.4
     - spring-data-mongodb
-    - spring-data-jap
+    - spring-data-jpa
     - spring-data-redis
     - spring-kafka
 - MariaDB 11.5.2
